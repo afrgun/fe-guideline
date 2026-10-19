@@ -20,6 +20,7 @@ These instructions are for agents **editing the pack itself**. Do not follow `AG
 | `scaffold/` | Starting formats for project-owned files (page-map, second-brain, api-contracts, ASSUMPTIONS, `layer-agents/src/**` per-folder AGENTS.md) | Yes — copied once; the project's copies are never overwritten on upgrade |
 | `hooks/` | Agent hooks (guard synced copies, lint edited file) + example settings | Yes |
 | `PROMPTS.md` | Prompt cheat sheet for humans | Yes |
+| `SKILLS.md` | Per-skill explanation for humans (purpose, contents, example prompt) | Yes |
 
 Per-folder `scaffold/layer-agents/**/AGENTS.md` files are short local reminders that point to the owning skill — never restate a full rule table there; change the skill instead.
 
@@ -28,7 +29,7 @@ Per-folder `scaffold/layer-agents/**/AGENTS.md` files are short local reminders 
 1. **One topic = one owning skill.** Other skills reference it; never duplicate rules or tables across skills, references, or templates.
 2. **Skills stay framework-free.** Framework details live only in `references/<stack>.md` and the stack profile.
 3. **Same section numbers in all three references** (§1 methods … §14 pitfalls). A change to one stack's section must be checked against the other two.
-4. **New skill** → `bp-` prefix, frontmatter `name` equals folder name, registered in the routing table of `AGENTS.template.md` and the catalog in `README.md`.
+4. **New skill** → `bp-` prefix, frontmatter `name` equals folder name, registered in the routing table of `AGENTS.template.md`, the catalog in `README.md`, and `SKILLS.md`.
 5. **Lint config and references must agree**: every import shown in a reference example must pass `lint/eslint.boundaries.mjs`. If you change element patterns or policies, rerun the test matrix below.
 6. **No internal names**: no company, client, or internal project names; no machine paths, usernames, drive letters, credentials, or tokens anywhere.
 7. Skills, agents, templates, and code: English. `README.md`, `lint/README.md`, and `references/*.md` prose may be Indonesian; code inside them is English.
