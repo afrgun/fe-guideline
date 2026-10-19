@@ -2,7 +2,7 @@
 
 Paket panduan untuk AI coding agent (Claude Code, Codex, Gemini, OpenCode, dsb.) dan tim frontend. Isinya **stack-agnostic**: aturan & proses sama untuk Next.js, React, dan Angular; detail per stack ada di `references/<stack>.md`. Bisa dipakai untuk kerja standar maupun kerja ber-timebox (lomba, hackathon, POC) lewat `mode` di stack profile.
 
-> **Status: v0.1 — divalidasi dengan template Next.js.** Template `fe-starter-nextjs` (Next.js 16, fitur contoh `topup`) lolos lint + boundaries, typecheck, test, dan build (mode mock & HTTP); `references/nextjs.md` ditulis ulang dari kode itu. `references/react.md` dan `references/angular.md` **masih draf** sampai template React dan Angular dibuat.
+> **Status: v0.2 — divalidasi dengan template Next.js dan Angular.** `fe-starter-nextjs` (Next.js 16) dan `fe-starter-angular` (Angular 21), masing-masing dengan fitur contoh `topup`, lolos lint + boundaries, typecheck, test, dan build (mock & HTTP); `references/nextjs.md` dan `references/angular.md` ditulis ulang dari kode itu. `references/react.md` **masih draf** sampai template React dibuat.
 
 ---
 
@@ -12,6 +12,7 @@ Paket panduan untuk AI coding agent (Claude Code, Codex, Gemini, OpenCode, dsb.)
 fe-guideline/                    # repo ini = sumber paket; di repo target disalin sebagai folder guideline/
 ├── README.md                    # file ini
 ├── PROMPTS.md                   # cheat sheet prompt untuk tim (manusia)
+├── SKILLS.md                    # penjelasan setiap skill untuk tim (untuk apa, isi, contoh prompt)
 ├── AGENTS.md, CLAUDE.md         # instruksi untuk MERAWAT paket ini (tidak ikut disalin)
 ├── AGENTS.template.md           # → jadi AGENTS.md di root repo target
 ├── CLAUDE.template.md           # → jadi CLAUDE.md di root repo target (pointer @AGENTS.md)
@@ -47,6 +48,8 @@ Cukup perintahkan agent: **"baca `references/<stack>.md` sesuai stack yang dipak
 
 ## Katalog skill
 
+Penjelasan lengkap setiap skill (untuk apa, isinya, contoh prompt): [`SKILLS.md`](./SKILLS.md).
+
 | Tier | Skill | Ringkas |
 |---|---|---|
 | 1 | `bp-architecture` | Layer, slicing per fitur, port/adapter, mapper wajib, `Result`, error bertipe, kapan usecase dibuat |
@@ -79,7 +82,7 @@ Prinsip kurasi: **satu topik = satu skill pemilik**; skill lain hanya merujuk (m
 6. Bangun **satu fitur contoh** lewat `bp-feature-lifecycle`. Bandingkan hasilnya dengan `references/<stack>.md`; perbaiki reference dari kode yang sudah direview (bukan sebaliknya).
 7. Tambahkan `node <guideline>/scripts/sync-skills.mjs --check` ke CI agar salinan skill tidak drift.
 8. (Claude Code) Gabungkan `hooks/settings.example.json` ke `.claude/settings.json` agar edit ke salinan skill diblokir dan file yang diedit langsung di-lint (lihat `hooks/README.md`).
-9. Bagikan `PROMPTS.md` ke tim sebagai panduan memulai pekerjaan dengan agent.
+9. Bagikan `SKILLS.md` dan `PROMPTS.md` ke tim sebagai panduan memulai pekerjaan dengan agent.
 
 ## Upgrade paket di project yang sudah memakai
 
@@ -87,14 +90,14 @@ File di `<guideline>/` terbagi dua:
 
 | Milik paket (boleh ditimpa versi baru) | Milik project (**jangan ditimpa**) |
 |---|---|
-| `skills/`, `references/`, `agents/`, `lint/`, `hooks/`, `scripts/`, `scaffold/`, `*.template.md`, `README.md`, `PROMPTS.md` | `stack-profile.md`, `page-map.md`, `second-brain/`, `api-contracts/`, salinan `src/**/AGENTS.md` dari `layer-agents` |
+| `skills/`, `references/`, `agents/`, `lint/`, `hooks/`, `scripts/`, `scaffold/`, `*.template.md`, `README.md`, `PROMPTS.md`, `SKILLS.md` | `stack-profile.md`, `page-map.md`, `second-brain/`, `api-contracts/`, salinan `src/**/AGENTS.md` dari `layer-agents` |
 
 Langkah: salin versi baru hanya untuk kolom kiri → bandingkan `AGENTS.template.md` baru dengan `AGENTS.md` root project dan gabungkan perubahannya → jalankan `sync-skills.mjs` → cek `stack-profile.template.md` untuk field baru dan tambahkan ke `stack-profile.md`.
 
 ## Aturan pemeliharaan paket
 
 1. Satu sumber: skill hanya diedit di `skills/tier-*/`; file agent lain hanya pointer/salinan hasil script.
-2. Skill baru wajib didaftarkan di tabel routing `AGENTS.template.md` dan di katalog README ini.
+2. Skill baru wajib didaftarkan di tabel routing `AGENTS.template.md`, di katalog README ini, dan di `SKILLS.md`.
 3. Tidak ada path mesin, username, drive letter, kredensial, atau token di file mana pun.
 4. Perubahan pola di kode acuan wajib memperbarui skill/reference terkait di MR yang sama.
 5. Skill inti tidak menyebut framework. Detail framework hanya di `references/<stack>.md` dan `stack-profile.md`.

@@ -43,7 +43,7 @@ Urutan elemen penting: **elemen pertama yang cocok yang dipakai** — `app` dan 
 |---|---|---|
 | Next.js | `src/app/**` + `src/proxy.ts` (dulu `middleware.ts`) dsb. | `src/core/di/**` (`server-ports.ts`; `client-ports-context.tsx` hanya bila ada adapter di browser) |
 | React | `src/app/**` + `src/main.tsx` | `src/core/di/**` (`ports.ts`, `ports-context.tsx`) |
-| Angular | `src/app/**` + `src/main.ts` + `src/features/*/*.routes.ts` | — (DI bawaan Angular lewat providers di route) |
+| Angular | `src/app/**` + `src/main.ts` + `src/features/*/*.routes.ts` | — (DI bawaan Angular lewat providers di route; tidak ada `core/di`) |
 
 ## Config tambahan per stack
 
