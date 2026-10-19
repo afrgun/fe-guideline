@@ -34,7 +34,7 @@ If the contract is missing, ask for it or a real sample response (competition mo
    - Mapper is pure and **tested first** (`bp-testing`).
 4. **Business codes**: if the backend uses business codes, add them to the feature's constants and map them to `AppError.type` through the shared normalizer, so the UI can branch on `type`, never on raw codes.
 5. **Adapter**: implements the port, calls the http client, checks success (HTTP + business code), maps, returns `Result`. Never throws.
-6. **Mock adapter** (`Mock<Entity>Repository`): same port, deterministic data; selectable in the composition root for local dev/tests.
+6. **Mock adapter** (`Mock<Entity>Repository`): same port, deterministic raw data passed through the **real mapper**; selectable in the composition root for local dev/tests. Mock code must not ship in production client bundles — select it at build time or on the server (`references/<stack>.md` § 8), not with a runtime flag in client code.
 7. **Wire** in the composition root (`references/<stack>.md` § 8).
 
 ## Rules

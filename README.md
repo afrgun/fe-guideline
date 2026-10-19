@@ -2,7 +2,7 @@
 
 Paket panduan untuk AI coding agent (Claude Code, Codex, Gemini, OpenCode, dsb.) dan tim frontend. Isinya **stack-agnostic**: aturan & proses sama untuk Next.js, React, dan Angular; detail per stack ada di `references/<stack>.md`. Bisa dipakai untuk kerja standar maupun kerja ber-timebox (lomba, hackathon, POC) lewat `mode` di stack profile.
 
-> **Status: v0.1 — divalidasi dengan template Next.js.** Template `fe-starter-nextjs` (Next.js 16, fitur contoh `topup`) lolos lint + boundaries, typecheck, test, dan build (mode mock & HTTP); `references/nextjs.md` ditulis ulang dari kode itu. `references/react.md` dan `references/angular.md` **masih draf** sampai template React dan Angular dibuat.
+> **Status: v0.2 — divalidasi dengan template Next.js dan Angular.** `fe-starter-nextjs` (Next.js 16) dan `fe-starter-angular` (Angular 21), masing-masing dengan fitur contoh `topup`, lolos lint + boundaries, typecheck, test, dan build (mock & HTTP); `references/nextjs.md` dan `references/angular.md` ditulis ulang dari kode itu. `references/react.md` **masih draf** sampai template React dibuat.
 
 ---
 

@@ -25,7 +25,7 @@ Promote a feature-local component to `shared/ui` only when a second feature need
 
 ## Core rules
 
-1. **Never render raw `<input>`, `<button>`, `<select>`, `<textarea>`, `<table>`** when a shared atom exists. Pass props (variant, size, disabled, error) instead of re-styling.
+1. **Never render raw `<input>`, `<button>`, `<select>`, `<textarea>`, `<table>`** when a shared atom exists. Pass props (variant, size, disabled, error) instead of re-styling. An atom may be a component or a styling directive applied to the native element (`references/<stack>.md` § 10); what is forbidden is a native element without the atom.
 2. **Missing atom → create it once in `shared/ui`**, then use it. No one-off raw versions inside a page.
 3. **When touching a file that uses raw form elements**, migrate them to atoms in the same change.
 4. **Composition over boolean props**: use children/slots/compound components instead of `isX`, `showY`, `variantZ` flag piles.
