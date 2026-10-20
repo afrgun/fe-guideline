@@ -24,7 +24,7 @@ If `mode: competition` in the profile, apply overrides from `bp-competition-mode
 | 4 | **Application** | Use cases **only if logic exists**, test-first | `bp-architecture`, `bp-testing` |
 | 5 | **Infrastructure** | Endpoints, raw types, mappers (tested), adapters, mock adapter | `bp-api-integration` |
 | 6 | **DI** | Register adapters/use cases/store in the composition root | `references/<stack>.md` § 8 |
-| 7 | **UI** | Store/hooks → components from shared atoms → page/route | `bp-ui-components`, `bp-figma-to-code` |
+| 7 | **UI** | Store/hooks (branching logic test-first) → components from shared atoms → page/route | `bp-ui-components`, `bp-figma-to-code` |
 | 8 | **Verify** | Done criteria green; summary of files and decisions | `bp-conventions` |
 
 ## Rules

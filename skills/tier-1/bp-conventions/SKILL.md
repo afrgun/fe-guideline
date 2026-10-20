@@ -55,7 +55,7 @@ A change is done only when **all** of these hold:
 
 1. `lint` passes (including boundary rules).
 2. `typecheck` passes.
-3. Tests for touched logic pass (`bp-testing` decides which tests are required).
+3. Tests for touched logic pass (`bp-testing` decides which tests are required), with red → green evidence for test-first targets.
 4. `build` passes when routes, config, or shared types changed.
 5. New routes are reachable through the real auth/permission flow, and navigation entries exist if the page should appear in menus.
 6. No secrets, machine paths, or debug leftovers in the diff.

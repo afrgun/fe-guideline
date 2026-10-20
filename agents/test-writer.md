@@ -16,3 +16,4 @@ Rules:
 - Assert user-visible or contract-visible behavior.
 - Fresh state per test (store, query client, DI container).
 - Run the test command from the profile and report the result. Never report tests as passing without running them.
+- For test-first targets (domain, mappers, use cases, store branching logic) on new behavior: write the test, run it, show the red output, then let the implementation make it green, and report the red → green evidence. When the code already exists, say so instead of claiming red → green.

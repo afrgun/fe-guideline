@@ -18,7 +18,7 @@ Goal: ship a working, demo-able result fast **without** losing the structure tha
 | Area | `standard` | `competition` |
 |---|---|---|
 | Lifecycle (`bp-feature-lifecycle`) | Phases 0–8 | Phases 0 (max one batch of questions, or go straight to assumptions), 2, 3, 5, 6, 7, 8. Phase 1 (spec files) skipped. Phase 4 only when logic exists |
-| Tests (`bp-testing`) | Full table, test-first | Required only for domain functions and mappers. Everything else optional |
+| Tests (`bp-testing`) | Full table, test-first with red → green evidence | Required only for domain functions and mappers; test-first order and red → green evidence not required. Everything else optional |
 | Ports (`bp-architecture`) | Every external call | **Still mandatory** — cheap and keeps structure |
 | Mock adapter (`bp-api-integration`) | Required | Only when the backend is not available yet |
 | Tier-3 skills | Active | **Not used** |

@@ -28,6 +28,12 @@ Verification (commands from stack-profile.md)
 - test: `pnpm test src/features/topup` → 14 passed
 - build: `pnpm build` → ok (route added)
 
+TDD evidence (test-first targets)
+- validateAmount — red: "expected null to equal { type: 'validation', … }" → green: 4 passed
+- toBank — red: "expected false to be true" (lowercase flag) → green: 6 passed
+- createTopup — red: "expected create not to be called" → green: 3 passed
+- TopupStore.submit — red: "expected 'Choose a bank', received undefined" → green: 4 passed
+
 Route reachability
 - /topup visible after login as role "customer"; permission `topup:create` added; menu entry added.
 ```
