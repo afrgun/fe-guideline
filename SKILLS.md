@@ -79,7 +79,8 @@ Tidak perlu menyebut nama skill di prompt: agent memilihnya lewat tabel routing 
 ### 8. `bp-testing` — apa yang wajib dites dan caranya
 - **Untuk:** strategi test per layer.
 - **Isi:**
-  - test-first wajib untuk domain dan mapper;
+  - **test-first wajib** (red → green → refactor) untuk domain, mapper, use case, dan logika bercabang di store; kode produksi tidak boleh ditulis sebelum test-nya dijalankan dan gagal;
+  - **bukti red → green wajib** di ringkasan (cuplikan output gagal lalu lolos); tanpa bukti dianggap belum selesai;
   - use case dites dengan fake port;
   - adapter dites dengan HTTP palsu;
   - komponen dites lewat perilaku yang terlihat user;

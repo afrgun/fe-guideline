@@ -19,17 +19,30 @@ If `mode: competition` in the profile, apply overrides from `bp-competition-mode
 | Mappers | **Yes — test-first** | Full payload, missing fields, unknown enums, bad dates |
 | Use cases | **Yes — test-first** | Fake ports (plain objects) |
 | Adapters | Yes | Fake HTTP / HTTP testing utilities → assert `Result` ok/err |
-| Store / state hooks | Yes for branching logic | Fake ports, assert state transitions |
+| Store / state hooks | **Yes — test-first for branching logic** (status transitions, validation before calling ports, success/error paths) | Fake ports, assert state transitions |
 | Components | When they hold interaction logic | Testing Library, user-visible behavior |
 | Full flows | Critical paths only | e2e |
 
 Purely mechanical changes (renames, moves) need no new tests — say so explicitly.
 
-## Red → green → refactor (for required targets)
+## Red → green → refactor (for test-first targets)
 
-1. Write the smallest test describing the behavior; run it; see it fail for the right reason.
-2. Implement the minimum to pass.
-3. Refactor with tests green.
+Test-first targets: domain functions, mappers, use cases, and store branching logic. Adapters and components must be tested but may be written after the code.
+
+1. **No production code before a failing test.** For a test-first target, write the test (or a stub that only exports the signature) first. Do not write the implementation until that test has been run and failed.
+2. Run it and see it **fail for the right reason** — an assertion about the missing behavior, not a typo, import error, or syntax error.
+3. Implement the minimum to pass; run again until green.
+4. Refactor with tests green.
+
+**Evidence is mandatory.** The summary of the change lists, for each test-first target:
+
+```markdown
+TDD evidence
+- validateAmount — red: "expected null to equal { type: 'validation', … }" → green: 4 passed
+- toBank (lowercase flag) — red: "expected false to be true" → green: 6 passed
+```
+
+A test-first target without red → green evidence counts as **not done** (`bp-conventions` done criteria). If code already existed before the test (legacy, generated code), say so explicitly instead of claiming red → green.
 
 ## Specs (used by `bp-feature-lifecycle` phase 1)
 
@@ -56,6 +69,7 @@ Fakes: <ports or http to fake>
 ## Done criteria
 
 - Required targets above have tests.
+- Test-first targets have red → green evidence in the summary.
 - Test command from the profile passes for the touched area.
 
 ## Examples

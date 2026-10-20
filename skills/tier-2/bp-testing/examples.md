@@ -70,3 +70,22 @@ it('rejects a bank that is no longer active', async () => {
 | Mocking `selectableBanks` inside the store test | Mocks the unit's own logic | Use real domain functions; fake only ports |
 | Snapshot of the whole bank list page | Brittle, hides intent | Assert visible bank names and the empty/error state |
 | Shared store/query client across tests | Leaks state | Fresh instance per test |
+
+## 6. Red → green, step by step (validateAmount)
+
+| Step | Action | Output to keep as evidence |
+|---|---|---|
+| 1 | Write the test only; `topup.ts` exports `validateAmount = (_amount: number) => null` (signature stub) | — |
+| 2 | Run the single test file | **red**: `expected null to equal { type: 'validation', message: 'Minimum top up is 10,000' }` |
+| 3 | Implement the minimum rule | — |
+| 4 | Run again | **green**: `4 passed` |
+| 5 | Refactor (extract `MIN_TOPUP`), run again | still green |
+
+Wrong "red": `Cannot find module '../topup'` or a syntax error. That proves nothing about the behavior — fix the setup and run again until the failure is the missing behavior.
+
+Reported in the summary as:
+
+```markdown
+TDD evidence
+- validateAmount — red: "expected null to equal { type: 'validation', … }" → green: 4 passed
+```
